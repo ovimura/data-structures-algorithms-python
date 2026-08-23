@@ -79,9 +79,18 @@ class DoublyLinkedList:
             for _ in range(index):
                 temp = temp.next
         else:
+            temp = self.tail
             for _ in range(self.length-1, index, -1):
                 temp = temp.prev
         return temp
+
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+
 
 def main():
     my_ddl = DoublyLinkedList(7)
@@ -93,6 +102,9 @@ def main():
     my_ddl.print_list()
     t = my_ddl.get(1)
     print(t.value)
+    my_ddl.set_value(1, 5)
+    print("=================")
+    my_ddl.print_list()
 
 if __name__ == "__main__":
     main()
