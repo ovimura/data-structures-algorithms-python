@@ -91,6 +91,39 @@ class DoublyLinkedList:
             return True
         return False
 
+    def insert(self, index, value):
+        if index < 0 or index >= self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length-1:
+            return self.append(value)
+        new_node = Node(value)
+        before = self.get(index-1)
+        after = before.next
+
+        before.next = new_node
+        after.prev = new_node
+
+        self.length += 1
+        return True
+        
+
+    def remove(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length-1:
+            return self.pop()
+        temp = self.get(index)
+        temp.next.pre = temp.prev
+        temp.prev.next = temp.next
+        temp.next = None
+        temp.prev = None
+        self.length -= 1
+        return temp
+
 
 def main():
     my_ddl = DoublyLinkedList(7)
@@ -103,6 +136,10 @@ def main():
     t = my_ddl.get(1)
     print(t.value)
     my_ddl.set_value(1, 5)
+    my_ddl.remove(1)
+    my_ddl.remove(0)
+    my_ddl.append(1)
+    print(my_ddl.insert(0, 2))
     print("=================")
     my_ddl.print_list()
 
