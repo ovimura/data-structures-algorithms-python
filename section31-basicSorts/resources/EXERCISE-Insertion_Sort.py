@@ -1,9 +1,12 @@
-## WRITE INSERTION_SORT FUNCTION HERE ##
-#                                      #
-#                                      #
-#                                      #
-#                                      #
-######################################## 
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        t = arr[i]
+        j = i-1
+        while t < arr[j] and j > -1:
+            arr[j+1] = arr[j]
+            arr[j] = t
+            j -= 1
+    return arr
 
 
 
